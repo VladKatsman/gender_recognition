@@ -184,7 +184,7 @@ class Evaluator:
 
             # wrong prediction check
             if only_errors:
-                if self.predicted_classes[i] == true_label:
+                if self.predicted_classes[i][0] == true_label:
                     continue
 
             def put_data_on_knn_imgs():
@@ -220,15 +220,16 @@ class Evaluator:
 
 
 if __name__ == '__main__':
-    from modelling.models import baseline_backbone, clip_vit16b, baseline_backbone_neck
+    from modelling.models import baseline_backbone, clip_vit16b, baseline_backbone_neck, clip_vitb16_with_neck
     import clip
 
-    # weights = '/home/noteme/data/results/logger/baseline_neck/epoch=01-precision=0.9882.pth'
-    weights=None
+    weights = '/home/noteme/data/results/logger/clip_vit_neck/epoch=02-precision=0.9655.pth'
+    # weights=None
 
     # model = baseline_backbone()
-    model = clip_vit16b()
+    # model = clip_vit16b()
     # model = baseline_backbone_neck()
+    model = clip_vitb16_with_neck()
 
     # init class
     cls = Evaluator(model=model, weights=weights)
@@ -240,4 +241,4 @@ if __name__ == '__main__':
     cls._compute_metrics(verbose=True)
 
     # visualization. If you want visualize good examples (for presentation e.g.) set parameter to False
-    cls._analyze_predictions(only_errors=True)
+    cls._analyze_predictions(only_errors=False)

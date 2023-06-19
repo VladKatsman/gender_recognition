@@ -42,4 +42,4 @@ def prepare_weights_dict(ckpt_path):
 
 
 if __name__ == '__main__':
-    prepare_weights_dict('/home/noteme/data/results/logger/version_11/epoch=00-precision=1.0000.ckpt')
+    prepare_weights_dict('/home/noteme/data/results/logger/version_3/epoch=02-precision=0.9655.ckpt')

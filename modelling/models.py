@@ -38,7 +38,7 @@ class BaseModelConstruct(pl.LightningModule):
     def forward(self, x):
 
         x = self.backbone(x)
-        x = self.neck(x)
+        x = self.neck(x.type(self.neck[0].weight.dtype))  # clip workaround
         if self.head is not None:
             x = self.head(x)
         if self.normalize:
